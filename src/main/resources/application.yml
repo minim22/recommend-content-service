@@ -1,3 +1,10 @@
 spring:
     application:
         name: recommend-content-service
+
+    config:
+        import: configserver:http://localhost:10000
+
+    cloud:
+        config:
+            fail-fast: true

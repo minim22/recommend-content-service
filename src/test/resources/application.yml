@@ -1,0 +1,17 @@
+spring:
+    application:
+        name: recommend-content-service
+
+    cloud:
+        config:
+            enabled: false
+
+tmdb:
+    api:
+        key: cdf93303cccceebf075e258a1196e681
+        accessToken: eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjZGY5MzMwM2NjY2NlZWJmMDc1ZTI1OGExMTk2ZTY4MSIsIm5iZiI6MTc2NDIyNjYwMi40ODcsInN1YiI6IjY5MjdmNjJhOWNjNGM0MjFkOTI0NThkYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zxcdhK9nlQGJ6CajxypNaDWHFAnbCLACNUhZ_K5xyzY
+        language: ko-KR
+        baseUrl: https://api.themoviedb.org/3
+        timeout:
+            connect: 3s
+            read: 5s
