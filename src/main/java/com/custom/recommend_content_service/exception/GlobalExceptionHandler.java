@@ -15,7 +15,7 @@ import org.springframework.web.bind.MissingRequestHeaderException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.custom.recommend_content_service.common.ApiResponse;
+import com.custom.recommend_content_service.common.ApiResult;
 
 /**
  * 전역 예외 처리 핸들러
@@ -26,11 +26,11 @@ import com.custom.recommend_content_service.common.ApiResponse;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(ApiException.class)
-    public ResponseEntity<ApiResponse<Object>> handleBusinessException(ApiException e) {
+    public ResponseEntity<ApiResult<Object>> handleBusinessException(ApiException e) {
         
         log.warn("BusinessException: code={}, message={}",
                 e.getResultCode().getCode(), e.getResultCode().getMessage());
 
-        return ApiResponse.error(e.getResultCode()).toEntity();
+        return ApiResult.error(e.getResultCode()).toEntity();
     }
 }

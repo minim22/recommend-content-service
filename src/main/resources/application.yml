@@ -3,8 +3,14 @@ spring:
         name: recommend-content-service
 
     config:
-        import: configserver:http://localhost:10000
+        import: configserver:http://localhost:10500
 
     cloud:
         config:
             fail-fast: true
+
+server:
+    error:
+        include-message: always
+        include-stacktrace: always
+        include-exception: true
