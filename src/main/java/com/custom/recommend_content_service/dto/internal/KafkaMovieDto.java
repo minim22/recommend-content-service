@@ -4,18 +4,21 @@ import java.util.List;
 
 import com.custom.recommend_content_service.dto.response.TmdbMovieDetailResponse;
 
-public record MovieDto(
-    long id,
+/**
+ * Kafaka 전용 DTO
+ */
+public record KafkaMovieDto(
+    Long id,
     String title,
     String overview,
     List<Integer> genreIds,
-    double voteAverage,
-    double popularity,
+    Double voteAverage,
+    Double popularity,
     String releaseDate,
     String posterPath
-) {
-    public static MovieDto from(TmdbMovieDetailResponse detailResponse) {
-        return new MovieDto(
+){
+    public static KafkaMovieDto from(TmdbMovieDetailResponse detailResponse) {
+        return new KafkaMovieDto(
             detailResponse.id(),
             detailResponse.title(),
             detailResponse.overview(),

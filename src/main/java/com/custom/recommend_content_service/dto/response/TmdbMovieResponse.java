@@ -6,6 +6,4 @@ import java.util.List;
 public record TmdbMovieResponse(
     int page,
     List<TmdbMovieDetailResponse> results
-) {
-    
-}
+) {}
