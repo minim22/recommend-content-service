@@ -11,11 +11,16 @@ public enum ErrorCode implements ResultCode{
 
     INVALID_INPUT(400, "E001", "입력값 오류", "요청하신 입력값이 올바르지 않습니다."),
     MISSING_PARAMETER(400, "E002", "파라미터 누락", "필수 정보가 누락되었습니다."),
+    DATA_NOT_FOUND(400, "E003", "데이터 오류", "요청하신 데이터값이 조회되지 않았습니다."),
 
     UNAUTHORIZED(401, "E401", "인증 실패", "로그인이 필요합니다."),
-    ACCESS_DENIED(403, "E403", "권한 없음", "해당 기능에 대한 접근 권한이 없습니다."),
-
-    TMDB_API_ERROR(502, "E100", "외부 연동 실패", "영화 정보를 가져오는 중 오류가 발생했습니다.");
+    ACCESS_DENIED(403, "E402", "권한 없음", "해당 기능에 대한 접근 권한이 없습니다."),
+    TWITCH_AUTH_ERROR(403, "E403", "외부 연동 실패", "TWITCH 인증 처리 중 오류가 발생했습니다."),
+    SPOTIFY_AUTH_ERROR(403, "E403", "외부 연동 실패", "SPOTIFY 인증 처리 중 오류가 발생했습니다."),
+        
+    TMDB_API_ERROR(502, "E100", "외부 연동 실패", "영화 정보를 가져오는 중 오류가 발생했습니다."),
+    IGDB_API_ERROR(502, "E101", "외부 연동 실패", "게임 정보를 가져오는 중 오류가 발생했습니다."),
+    SPOTIFY_API_ERROR(502, "E102", "외부 연동 실패", "음악 정보를 가져오는 중 오류가 발생했습니다.");
 
     private final int status;
     private final String code;

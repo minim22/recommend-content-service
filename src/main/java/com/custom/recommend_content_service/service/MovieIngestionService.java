@@ -118,7 +118,8 @@ public class MovieIngestionService {
                         kafkaMovieDto.voteAverage(),
                         kafkaMovieDto.popularity(),
                         releaseDate,
-                        posterPath
+                        posterPath,
+                        kafkaMovieDto.clickCnt()
                     );
                     movieIngestionRepository.save(movie);
                     log.info("Created new movie: id={}", movie.getId());
@@ -160,6 +161,19 @@ public class MovieIngestionService {
             log.error("Failed to send movie to Kafka: id={}", kafkaMovieDto.id(), e);
             throw new ApiException(ErrorCode.SYSTEM_ERROR);
         }
+    }
+
+    /**
+     * 게임 클릭 수 증가
+     */
+    @Transactional
+    public void incrementClickCount(Long movieId) {
+        Movie movie = movieIngestionRepository.findById(movieId)
+            .orElseThrow(() -> new ApiException(ErrorCode.DATA_NOT_FOUND));
+        
+        movie.incrementClickCount();
+        
+        log.info("Movie click count incremented: id={}, newCount={}", movieId, movie.getClickCnt());
     }
 
     private void validateMovieDto(KafkaMovieDto movieDto) {

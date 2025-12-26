@@ -22,10 +22,10 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder(access = AccessLevel.PRIVATE)
 @EntityListeners(AuditingEntityListener.class) 
-@AllArgsConstructor
 @Table(name = "movie")
 public class Movie {
 
@@ -63,6 +63,9 @@ public class Movie {
     @Column(nullable = true, length = 500, name="poster_path")
     private String posterPath;
 
+    @Column(name = "clickCnt")
+    Integer clickCnt;
+
     /**
      * Movie 엔티티 생성 정적 팩토리 메서드
      */
@@ -74,7 +77,9 @@ public class Movie {
         Double voteAverage,
         Double popularity,
         LocalDate releaseDate,
-        String posterPath) {
+        String posterPath,
+        Integer clickCnt
+    ) {
         
         return Movie.builder()
             .id(id)
@@ -85,6 +90,7 @@ public class Movie {
             .popularity(popularity)
             .releaseDate(releaseDate)
             .posterPath(posterPath)
+            .clickCnt(clickCnt)
             .build();
     }
 
@@ -107,5 +113,15 @@ public class Movie {
         this.popularity = popularity;
         this.releaseDate = releaseDate;
         this.posterPath = posterPath;
+    }
+
+    /**
+     * 클릭 수 증가
+     */
+    public void incrementClickCount() {
+        if (this.clickCnt == null) {
+            this.clickCnt = 0;
+        }
+        this.clickCnt++;
     }
 }

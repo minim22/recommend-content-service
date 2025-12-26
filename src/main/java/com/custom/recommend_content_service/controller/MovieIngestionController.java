@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,7 +29,7 @@ public class MovieIngestionController {
     
     private final MovieIngestionService movieIngestionService;
 
-    @Operation(summary = "TMDB 메인 영화 조회", description = "메인에 노출할 영화 목록을 반환합니다")
+    @Operation(summary = "TMDB 인기 영화 외부 조회", description = "TMDB API를 직접 호출하여 현재 인기 영화 목록을 가져옵니다.")
     @ApiResponse(
         responseCode = "200", 
         description = "영화 목록 조회 성공"
@@ -40,7 +42,7 @@ public class MovieIngestionController {
         return ResponseEntity.ok(ApiResult.success(response));
     }
 
-    @Operation(summary = "메인화면 조회", description = "메인에 노출할 영화 목록을 조회합니다")
+    @Operation(summary = "수집된 인기 영화 조회", description = "시스템 내부에 저장된 인기 영화 목록을 조회합니다")
     @ApiResponse(
         responseCode = "200", 
         description = "메인 영화 목록 조회 성공"
@@ -51,5 +53,21 @@ public class MovieIngestionController {
         List<MovieResponse> response = movieIngestionService.getIngestPopularMovies();
         
         return ResponseEntity.ok(ApiResult.success(response));
+    }
+
+    @Operation(
+        summary = "클릭횟수 업데이트",
+        description = "클릭을 통한 내부 알고리즘 처리를 위해 업데이트"
+    )
+    @ApiResponse(
+        responseCode = "200", 
+        description = "영화 클릭횟수 업데이트 성공"
+    )
+    @PatchMapping("/{moiveId}/click")
+    public ResponseEntity<ApiResult<Void>> incrementClickCount(@PathVariable Long moiveId) {
+
+        movieIngestionService.incrementClickCount(moiveId);
+        
+        return ResponseEntity.ok(ApiResult.success());
     }
 }

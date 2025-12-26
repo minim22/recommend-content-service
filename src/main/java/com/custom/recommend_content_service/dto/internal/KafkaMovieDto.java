@@ -15,7 +15,8 @@ public record KafkaMovieDto(
     Double voteAverage,
     Double popularity,
     String releaseDate,
-    String posterPath
+    String posterPath,
+    Integer clickCnt
 ){
     public static KafkaMovieDto from(TmdbMovieDetailResponse detailResponse) {
         return new KafkaMovieDto(
@@ -26,7 +27,8 @@ public record KafkaMovieDto(
             detailResponse.voteAverage(),
             detailResponse.popularity(),
             detailResponse.releaseDate(),
-            detailResponse.posterPath()
+            detailResponse.posterPath(),
+            0
         );
     }
 }
