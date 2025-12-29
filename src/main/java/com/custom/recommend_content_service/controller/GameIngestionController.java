@@ -34,7 +34,7 @@ public class GameIngestionController {
         description = "IGDB API를 직접 호출하여 현재 인기 게임 목록을 가져옵니다."
     )
     @ApiResponse(
-        responseCode = "200", 
+        responseCode = "200",
         description = "게임 목록 조회 성공"
     )
     @GetMapping("/igdb")
@@ -51,7 +51,7 @@ public class GameIngestionController {
         description = "시스템 내부에 저장된 인기 게임 목록을 조회합니다"
     )
     @ApiResponse(
-        responseCode = "200", 
+        responseCode = "200",
         description = "메인 게임 목록 조회 성공"
     )
     @GetMapping("/main")

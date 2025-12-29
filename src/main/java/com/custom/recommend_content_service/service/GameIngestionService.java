@@ -122,10 +122,9 @@ public class GameIngestionService {
 
                 Optional<Game> existingGame = gameIngestionRepository.findById(kafkaGameDto.id());
                 
-                
                 // 이미지 다운로드 및 저장
                 String savedImagePath = downloadAndSaveImage(
-                    kafkaGameDto.screenshotUrl(), 
+                    kafkaGameDto.screenshotUrl(),
                     accessToken
                 );
                 
@@ -179,13 +178,13 @@ public class GameIngestionService {
             
             // 이미지 다운로드
             byte[] imageBytes = RestClient.create()
-                    .get()
-                    .uri(imageUrl)
-                    .header("Client-ID", clientId)
-                    .header("Accept", "application/json")
-                    .header("Authorization", "Bearer " + accessToken)
-                    .retrieve()
-                    .body(byte[].class);
+                .get()
+                .uri(imageUrl)
+                .header("Client-ID", clientId)
+                .header("Accept", "application/json")
+                .header("Authorization", "Bearer " + accessToken)
+                .retrieve()
+                .body(byte[].class);
             
             if (imageBytes == null || imageBytes.length == 0) {
                 log.warn("Failed to download image: {}", imageId);

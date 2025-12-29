@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.custom.recommend_content_service.common.ApiResult;
-import com.custom.recommend_content_service.dto.response.GameResponse;
-import com.custom.recommend_content_service.dto.response.IgdbIngestionResponse;
+import com.custom.recommend_content_service.dto.response.AlbumResponse;
 import com.custom.recommend_content_service.dto.response.SpotifyIngestionResponse;
 import com.custom.recommend_content_service.service.MusicIngestionService;
 
@@ -39,7 +38,7 @@ public class MusicIngestionController {
         description = "음악 목록 조회 성공"
     )
     @GetMapping("/spotify")
-    public ResponseEntity<ApiResult<SpotifyIngestionResponse>> igdbPopularMovies() {
+    public ResponseEntity<ApiResult<SpotifyIngestionResponse>> spotifyPopularMusics() {
 
         SpotifyIngestionResponse response =
             musicIngestionService.spotifyPopularMusics();
@@ -52,13 +51,13 @@ public class MusicIngestionController {
         description = "시스템 내부에 저장된 인기 음악 목록을 조회합니다"
     )
     @ApiResponse(
-        responseCode = "200", 
+        responseCode = "200",
         description = "메인 음악 목록 조회 성공"
     )
     @GetMapping("/main")
-    public ResponseEntity<ApiResult<List<GameResponse>>> getIngestPopularMusics() {
+    public ResponseEntity<ApiResult<List<AlbumResponse>>> getIngestPopularMusics() {
 
-        List<GameResponse> response =
+        List<AlbumResponse> response =
             musicIngestionService.getIngestPopularMusics();
         
         return ResponseEntity.ok(ApiResult.success(response));
