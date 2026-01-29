@@ -118,6 +118,7 @@ public class GameIngestionService {
     public void consumeGameBatch(List<KafkaGameDto> games) {
         for (KafkaGameDto kafkaGameDto : games) {
             try {
+                // 1. 데이터 검증
                 validateGameDto(kafkaGameDto);
 
                 Optional<Game> existingGame = gameIngestionRepository.findById(kafkaGameDto.id());
@@ -128,6 +129,7 @@ public class GameIngestionService {
                     accessToken
                 );
                 
+                // 2. 중복 체크 및 저장
                 if (existingGame.isPresent()) {
                     Game game = existingGame.get();
                     game.update(

@@ -142,7 +142,7 @@ public class MovieIngestionService {
 
         List<Movie> movieList = movieIngestionRepository.findAll();
 
-         return movieList.stream()
+        return movieList.stream()
             .map(MovieResponse::from)
             .toList();
         }

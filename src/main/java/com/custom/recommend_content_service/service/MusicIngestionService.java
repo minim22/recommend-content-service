@@ -268,13 +268,13 @@ public class MusicIngestionService {
         if (existingAlbum.isPresent()) {
             // 기존 앨범 업데이트
             Album album = existingAlbum.get();
-            album.update(
-                dto.albumName(),
-                dto.artistNames(),
-                dto.albumImageLarge(),
-                dto.spotifyUrl(),
-                dto.popularity()
-            );
+                album.update(
+                    dto.albumName(),
+                    dto.artistNames(),
+                    dto.albumImageLarge(),
+                    dto.spotifyUrl(),
+                    dto.popularity()
+                );
 
             // 트랙 업데이트
             List<Track> newTracks = dto.tracks().stream()

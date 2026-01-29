@@ -24,7 +24,7 @@ import lombok.Setter;
 @Builder(access = AccessLevel.PRIVATE)
 @EntityListeners(AuditingEntityListener.class) 
 @Table(name = "game")
-public class Game {
+public class Game extends BaseEntity{
 
     @Id
     private Long id;

@@ -27,7 +27,7 @@ import lombok.Setter;
 @Builder(access = AccessLevel.PRIVATE)
 @EntityListeners(AuditingEntityListener.class) 
 @Table(name = "movie")
-public class Movie {
+public class Movie extends BaseEntity{
 
     // TMDB 영화 ID (고유 식별자)
     @Id
@@ -98,13 +98,14 @@ public class Movie {
      * Movie 엔티티 업데이트 메서드
      */
     public void update(
-            String title,
-            String overview,
-            List<Integer> genreIds,
-            Double voteAverage,
-            Double popularity,
-            LocalDate releaseDate,
-            String posterPath) {
+        String title,
+        String overview,
+        List<Integer> genreIds,
+        Double voteAverage,
+        Double popularity,
+        LocalDate releaseDate,
+        String posterPath
+    ) {
         
         this.title = title;
         this.overview = overview;

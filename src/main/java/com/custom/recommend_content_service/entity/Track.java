@@ -29,7 +29,7 @@ import lombok.Setter;
 @Builder(access = AccessLevel.PRIVATE)
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "track")
-public class Track {
+public class Track extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -70,6 +70,10 @@ public class Track {
     @CreatedDate
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
+
+    @CreatedDate
+    @Column(name = "uapdated_at", updatable = false)
+    private LocalDateTime uapdatedAt;
 
     /**
      * Track 엔티티 생성
